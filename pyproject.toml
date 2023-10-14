@@ -29,7 +29,7 @@ drf-spectacular = "^0.26.5"
 
 
 [tool.poetry.group.dev.dependencies]
-# django-debug-toolbar = "^3.8.1"
+django-debug-toolbar = "^4.2.0"
 # autopep8 = "^2.0.4"
 
 [tool.poetry.group.prod.dependencies]

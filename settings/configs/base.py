@@ -102,8 +102,9 @@ USE_TZ = True
 from settings.modules.cors import *
 from settings.modules.sessions import *
 from settings.modules.token import *
-from settings.modules.swagger import *
 
 if 'rest_framework' in INSTALLED_APPS:
     from settings.modules.drf import *
+    from settings.modules.rest_docs import *
+
 

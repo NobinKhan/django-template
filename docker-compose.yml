@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  rfid_pgadmin:
+    image: dpage/pgadmin4:6.20
+    container_name: rfid_pgadmin
+    restart: unless-stopped
+
+    environment:
+      # PGDATA: ${PGDATA}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    networks:
+      - rfid
+    depends_on:
+      - rfid_DB
+    volumes:
+      - rfid_pgadmin:/var/lib/pgadmin
+
+  rfid_DB:
+    image: postgres:15.2-alpine3.17
+    container_name: rfid_DB
+    networks:
+      - rfid
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOST: ${DB_HOST}
+    volumes:
+      - rfid_DB_data1:/data/postgres
+      - rfid_DB_data2:/var/lib/postgresql/data
+
+
+  rfid_redis:
+    image: redis:7.0.8-alpine
+    container_name: rfid_redis
+    restart: always
+    depends_on:
+      - rfid_DB
+    volumes: 
+      - rfid_redis:/data
+    ports:
+      - '6379:6379'
+    networks:
+      - rfid
+
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
+  #     - "1025:1025"
+  #   networks:
+  #     - rfid
+
+networks:
+  rfid:
+    driver: bridge
+
+volumes:
+  rfid_DB_data1:
+  rfid_DB_data2:
+  rfid_pgadmin:
+  rfid_redis:

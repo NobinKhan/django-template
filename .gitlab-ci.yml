@@ -1,0 +1,17 @@
+#Nayeem CI-Edited
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image: ubuntu
+  before_script:
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  script:
+    - apt-get update
+    - apt-get -y install openssh-client
+    - echo "$forsocket" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh -i ~/.ssh/id_rsa -o "StrictHostKeyChecking=no" ubuntu@ec2-54-254-73-4.ap-southeast-1.compute.amazonaws.com "cd pub-RFID-project/ && sudo git pull https://oauth2:$accesstoken@gitlab.com/my878/pub-RFID-project.git  && sudo systemctl restart gunicorn.service && sudo systemctl restart nginx.service"
+    - echo "done"

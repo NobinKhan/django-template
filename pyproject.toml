@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "Microservice-Project"
+version = "0.0.1"
+description = "Microservice Details"
+authors = ["nobinkhan <nazrulkhan.dk@gmail.com>"]
+license = "Private"
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# databases
+redis = "^5.0.1"
+psycopg = "^3.1.12"
+
+# django and django-related
+Django = "^4.2.6"
+django-environ = "^0.11.2"
+django-cors-headers = "^4.3.0"
+djangorestframework = "^3.14.0"
+django-filter = "^23.3"
+drf-spectacular = "^0.26.5"
+# pandas = "^1.5.3"
+# whitenoise = "^6.5.0"
+# python-barcode = "^0.14.0"
+# django-import-export = "^3.3.1"
+# django-phonenumber-field = {extras = ["phonenumberslite"], version = "^7.1.0"}
+
+
+[tool.poetry.group.dev.dependencies]
+# django-debug-toolbar = "^3.8.1"
+# autopep8 = "^2.0.4"
+
+[tool.poetry.group.prod.dependencies]
+gunicorn = "^21.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

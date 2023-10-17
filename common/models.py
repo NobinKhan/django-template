@@ -1,7 +1,7 @@
-from django.db import models
-from django.db.utils import ProgrammingError
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.db.utils import ProgrammingError
 
 
 class BaseModel(models.Model):
@@ -13,10 +13,9 @@ class BaseModel(models.Model):
 
 
 class CustomID(models.Model):
-
     def generate_id():
         try:
-            last_object = get_user_model().objects.order_by('-id')[0]
+            last_object = get_user_model().objects.order_by("-id")[0]
             if last_object.id < 1000:
                 return 1000 + last_object.id
             return last_object.id + 1

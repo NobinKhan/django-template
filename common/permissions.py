@@ -8,7 +8,7 @@ class AddUser(BasePermission):
     message = "You don't have permission to create new user!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('users.add_user')
+        return request.user.has_perm("users.add_user")
 
 
 class ChangeUser(BasePermission):
@@ -17,15 +17,16 @@ class ChangeUser(BasePermission):
     message = "You don't have permission to edit user!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('users.change_user')
-      
+        return request.user.has_perm("users.change_user")
+
+
 class ViewUser(BasePermission):
     """Allow access to view user only"""
 
     message = "You don't have permission to view user!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('users.view_user')
+        return request.user.has_perm("users.view_user")
 
 
 class DeleteUser(BasePermission):
@@ -34,7 +35,7 @@ class DeleteUser(BasePermission):
     message = "You don't have permission to view user!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('users.delete_user')
+        return request.user.has_perm("users.delete_user")
 
 
 class ViewRole(BasePermission):
@@ -43,10 +44,11 @@ class ViewRole(BasePermission):
     message = "You don't have permission to view roles!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('auth.view_group')
+        return request.user.has_perm("auth.view_group")
 
 
 # Product Permissions
+
 
 class AddSubNumber(BasePermission):
     """Allow access to create user only"""
@@ -54,7 +56,7 @@ class AddSubNumber(BasePermission):
     message = "You don't have permission to create new sub_number!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.add_subnumber')
+        return request.user.has_perm("product.add_subnumber")
 
 
 class AddUploadProduct(BasePermission):
@@ -63,7 +65,7 @@ class AddUploadProduct(BasePermission):
     message = "You don't have permission to create new Product!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.add_uploadproduct')
+        return request.user.has_perm("product.add_uploadproduct")
 
 
 class DeleteUploadProduct(BasePermission):
@@ -72,7 +74,7 @@ class DeleteUploadProduct(BasePermission):
     message = "You don't have permission to remove existing Product!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.delete_uploadproduct')
+        return request.user.has_perm("product.delete_uploadproduct")
 
 
 class ViewUploadProduct(BasePermission):
@@ -81,7 +83,7 @@ class ViewUploadProduct(BasePermission):
     message = "You don't have permission to view Products!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.view_uploadproduct')
+        return request.user.has_perm("product.view_uploadproduct")
 
 
 class ChangeUploadProduct(BasePermission):
@@ -90,7 +92,7 @@ class ChangeUploadProduct(BasePermission):
     message = "You don't have permission to change Products!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.change_uploadproduct')
+        return request.user.has_perm("product.change_uploadproduct")
 
 
 class ViewProduct(BasePermission):
@@ -99,7 +101,7 @@ class ViewProduct(BasePermission):
     message = "You don't have permission to view Products!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.view_product')
+        return request.user.has_perm("product.view_product")
 
 
 class AddProduct(BasePermission):
@@ -108,7 +110,7 @@ class AddProduct(BasePermission):
     message = "You don't have permission to scan Products!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('product.add_product')
+        return request.user.has_perm("product.add_product")
 
 
 # Emails permissions
@@ -118,7 +120,7 @@ class AddEmail(BasePermission):
     message = "You don't have permission to add new email!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('emails.add_email')
+        return request.user.has_perm("emails.add_email")
 
 
 class ViewEmail(BasePermission):
@@ -127,7 +129,7 @@ class ViewEmail(BasePermission):
     message = "You don't have permission to view email!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('emails.view_email')
+        return request.user.has_perm("emails.view_email")
 
 
 class ChangeEmail(BasePermission):
@@ -136,7 +138,7 @@ class ChangeEmail(BasePermission):
     message = "You don't have permission to edit email!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('emails.change_email')
+        return request.user.has_perm("emails.change_email")
 
 
 class DeleteEmail(BasePermission):
@@ -145,11 +147,11 @@ class DeleteEmail(BasePermission):
     message = "You don't have permission to delete email!"
 
     def has_permission(self, request, view):
-        return request.user.has_perm('emails.delete_email')
+        return request.user.has_perm("emails.delete_email")
+
 
 class AdminUser(BasePermission):
     message = "You donot have all permission"
-    
+
     def has_permission(self, request, view):
-        
         return request.user.get_all_permissions()

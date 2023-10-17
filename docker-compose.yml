@@ -44,7 +44,7 @@ services:
     restart: always
     depends_on:
       - rfid_DB
-    volumes: 
+    volumes:
       - rfid_redis:/data
     ports:
       - '6379:6379'

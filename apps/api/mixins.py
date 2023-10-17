@@ -1,6 +1,6 @@
+from collections.abc import Sequence
 from importlib import import_module
-from typing import TYPE_CHECKING, Sequence, Type
-
+from typing import TYPE_CHECKING
 from django.conf import settings
 from django.contrib import auth
 from rest_framework.authentication import BaseAuthentication, SessionAuthentication
@@ -66,11 +66,11 @@ if TYPE_CHECKING:
 
     PermissionClassesType = Sequence[_PermissionClass]
 else:
-    PermissionClassesType = Sequence[Type[BasePermission]]
+    PermissionClassesType = Sequence[type[BasePermission]]
 
 
 class ApiAuthMixin:
-    authentication_classes: Sequence[Type[BaseAuthentication]] = [
+    authentication_classes: Sequence[type[BaseAuthentication]] = [
         CsrfExemptedSessionAuthentication,
         SessionAsHeaderAuthentication,
     ]

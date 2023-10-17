@@ -17,6 +17,6 @@ def user_get_login_data(*, user: User):
 def user_list(*, filters=None) -> QuerySet[User]:
     filters = filters or {}
 
-    qs = User.objects.all().order_by('-id').exclude(is_superuser=True, is_staff=True)
+    qs = User.objects.all().order_by("-id").exclude(is_superuser=True, is_staff=True)
 
     return UserFilter(filters, qs).qs

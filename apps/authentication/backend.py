@@ -1,17 +1,19 @@
 from uuid import UUID
-from django.conf import settings
-from django.utils import timezone
-from django.contrib.auth import get_user_model
-from django.utils.translation import gettext_lazy as _
 
-from rest_framework import HTTP_HEADER_ENCODING, authentication
-from drf_spectacular.extensions import OpenApiAuthenticationExtension
-import apps.authentication.backend
 from apps.common.utils import get_object
-from apps.token.models import AccessToken
-from apps.authentication.exceptions import InvalidToken, AuthenticationFailed
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from drf_spectacular.extensions import OpenApiAuthenticationExtension
+from rest_framework import HTTP_HEADER_ENCODING, authentication
 
-AUTH_HEADER_TYPE_BYTES = {h.encode(HTTP_HEADER_ENCODING) for h in settings.AUTH_HEADER_TYPES}
+from apps.authentication.exceptions import AuthenticationFailed, InvalidToken
+from apps.token.models import AccessToken
+
+AUTH_HEADER_TYPE_BYTES = {
+    h.encode(HTTP_HEADER_ENCODING) for h in settings.AUTH_HEADER_TYPES
+}
 
 
 class Authentication(authentication.BaseAuthentication):
@@ -97,7 +99,11 @@ class Authentication(authentication.BaseAuthentication):
                     "detail": _("Given token not valid for any token type"),
                 }
             )
-        if not token or token.exp < timezone.now() or token.validity == AccessToken.TokenValidity.INVALID:
+        if (
+            not token
+            or token.exp < timezone.now()
+            or token.validity == AccessToken.TokenValidity.INVALID
+        ):
             raise InvalidToken(
                 {
                     "detail": _("Given token not valid for any token type"),
@@ -123,12 +129,14 @@ class Authentication(authentication.BaseAuthentication):
 
 
 class MyAuthenticationScheme(OpenApiAuthenticationExtension):
-    target_class = 'apps.authentication.backend.Authentication'  # full import path OR class ref
-    name = 'Authentication'  # name used in the schema
+    target_class = (
+        "apps.authentication.backend.Authentication"  # full import path OR class ref
+    )
+    name = "Authentication"  # name used in the schema
 
     def get_security_definition(self, auto_schema):
         return {
-            'type': 'bearer token',
-            'in': 'header',
-            'name': 'Bearer',
+            "type": "bearer token",
+            "in": "header",
+            "name": "Bearer",
         }

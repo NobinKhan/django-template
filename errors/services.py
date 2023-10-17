@@ -1,13 +1,13 @@
 import inspect
 import sys
 
+from apps.common.exceptions import ApplicationError
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.http import Http404
 from rest_framework import exceptions, serializers
 from rest_framework.exceptions import ValidationError as RestValidationError
 
-from apps.common.exceptions import ApplicationError
 from apps.users.models import User
 
 
@@ -100,7 +100,11 @@ def trigger_errors(exception_handler):
     result = {}
 
     for name, member in inspect.getmembers(sys.modules[__name__]):
-        if inspect.isfunction(member) and name.startswith("trigger") and name != "trigger_errors":
+        if (
+            inspect.isfunction(member)
+            and name.startswith("trigger")
+            and name != "trigger_errors"
+        ):
             try:
                 member()
             except Exception as exc:

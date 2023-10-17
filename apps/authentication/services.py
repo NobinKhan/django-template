@@ -1,11 +1,8 @@
 import uuid
-from django.conf import settings
-from django.contrib.auth import get_user_model
-
-from rest_framework import status
 
 from apps.common.utils import get_object
-
+from django.contrib.auth import get_user_model
+from rest_framework import status
 
 User = get_user_model()
 
@@ -30,19 +27,19 @@ def auth_logout(user: User) -> User:
 
 
 def verify_phone(phone):
-        return None
+    return None
 
 
 def verify_user(phone):
     user = get_object(User, phone=phone, username=phone)
     if not user:
-        return True, "User Not Found With The Given Phone Number", status.HTTP_404_NOT_FOUND
+        return (
+            True,
+            "User Not Found With The Given Phone Number",
+            status.HTTP_404_NOT_FOUND,
+        )
     return False, user, None
 
 
 def saving_otp_token(perpose, user=None):
     return None
-
-
-
-        

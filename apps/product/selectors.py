@@ -4,11 +4,10 @@ from apps.product.filters import ProductFilter, UploadProductFilter
 from apps.product.models import Product, UploadProduct
 
 
-
 def product_list(*, filters=None) -> QuerySet[Product]:
     filters = filters or {}
 
-    qs = Product.objects.all().order_by('-id')
+    qs = Product.objects.all().order_by("-id")
 
     return ProductFilter(filters, qs).qs
 

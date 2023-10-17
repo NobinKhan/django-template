@@ -1,8 +1,6 @@
 from django.urls import include, path
-from apps.product.apis import (
-    DashBoardDeatilsApi
-)
 
+from apps.product.apis import DashBoardDeatilsApi
 
 urlpatterns = [
     path("auth/", include(("apps.authentication.urls", "authentication"))),
@@ -10,7 +8,5 @@ urlpatterns = [
     path("product/", include(("apps.product.urls", "product"))),
     path("cost_center/", include(("apps.cost_center.urls", "cost_center"))),
     path("email/", include(("apps.emails.urls", "email"))),
-    path("dashboard/",DashBoardDeatilsApi.as_view(),name='dashboard'),
+    path("dashboard/", DashBoardDeatilsApi.as_view(), name="dashboard"),
 ]
-
-

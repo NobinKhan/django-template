@@ -4,7 +4,6 @@ from apps.product.filters import ProductFilter
 from apps.product.models import Product
 
 
-
 def product_list(*, filters=None) -> QuerySet[Product]:
     filters = filters or {}
 

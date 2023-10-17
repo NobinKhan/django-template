@@ -6,7 +6,7 @@ from apps.emails.models import Email, Role
 
 def create_email(*, email: str = None, role=None) -> Email:
     if not email:
-        raise ValidationError(_('Empty Data Not Allowed'))
+        raise ValidationError(_("Empty Data Not Allowed"))
     email_obj = Email.objects.create(email=email, role=role)
     email_obj.full_clean()
     email_obj.save()
@@ -15,10 +15,8 @@ def create_email(*, email: str = None, role=None) -> Email:
 
 def create_role(*, name: str = None, description=None) -> Role:
     if not name:
-        raise ValidationError(_('Empty Data Not Allowed'))
+        raise ValidationError(_("Empty Data Not Allowed"))
     role = Role.objects.create(name=name, description=description)
     role.full_clean()
     role.save()
     return role
-
-

@@ -1,4 +1,6 @@
+
 from settings.configs.base import * # noqa: F403
+from settings.configs.env import BASE_DIR
 
 # installed apps and middleware
 INSTALLED_APPS.append(  # noqa: F405

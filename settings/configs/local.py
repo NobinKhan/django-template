@@ -1,4 +1,3 @@
-
 from settings.configs.base import * # noqa: F403
 from settings.configs.env import BASE_DIR
 

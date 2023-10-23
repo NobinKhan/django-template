@@ -146,3 +146,4 @@ poetry.lock
 query.py
 static/
 .testfile
+.ruff_cache

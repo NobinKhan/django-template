@@ -1,4 +1,8 @@
-## Unreleased
+## 0.1.1 (2023-10-25)
+
+### Fix
+
+- yml config for pre-commit
 
 ## 0.1.0 (2023-10-25)
 
